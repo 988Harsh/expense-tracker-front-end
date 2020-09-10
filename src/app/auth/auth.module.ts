@@ -4,16 +4,24 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from "ngx-pagination";
 import { AuthComponent } from "./auth.component";
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
     {
-        path: '', component: AuthComponent,
+        path: '', children: [
+            {
+                path: '', component: AuthComponent
+            },
+            {
+                path: 'signup', component: SignupComponent
+            }
+        ]
     }
 ]
 
 @NgModule({
     imports: [RouterModule.forChild(routes), CommonModule, FormsModule, NgxPaginationModule],
-    declarations: [AuthComponent],
+    declarations: [AuthComponent, SignupComponent],
     exports: [RouterModule],
 
 })

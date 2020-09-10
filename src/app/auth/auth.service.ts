@@ -16,6 +16,14 @@ export class AuthService {
         this.authCom = new BehaviorSubject<any>(cookie ? cookie : null);
     }
 
+    login() {
+        this.authCom.next("");
+    }
 
+    logout() {
+        this.authCom.next("");
+    }
+
+    check() { return this.authCom.asObservable(); }
 
 }

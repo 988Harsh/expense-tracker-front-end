@@ -6,14 +6,15 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="#">Expense Tracker</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/']"
+                    [routerLinkActiveOptions]="{exact:true}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Expenses</a>
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/expenses']">Expenses</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Charts</a>
+                <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']">Charts</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -21,7 +22,7 @@
                 <a class="navbar-text selects">Already have an account?</a>
             </li>
             <li class="ml-2">
-                <a class="navbar-text selects">Login</a>
+                <a class="navbar-text selects" [routerLink]="['/auth/']">Login</a>
             </li>
         </ul>
     </div>

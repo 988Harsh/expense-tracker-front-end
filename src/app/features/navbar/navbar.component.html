@@ -17,12 +17,25 @@
                 <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']">Charts</a>
             </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right" *ngIf="!isLoggedIn && navstat">
             <li>
-                <a class="navbar-text selects">Already have an account?</a>
+                <a class="navbar-text" style="text-decoration: none;cursor:default;">Already have an account?</a>
             </li>
             <li class="ml-2">
-                <a class="navbar-text selects" [routerLink]="['/auth/']">Login</a>
+                <a class="navbar-text selects" [routerLink]="['/auth']">Login</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="!isLoggedIn && !navstat">
+            <li>
+                <a class="navbar-text " style="text-decoration: none;cursor:default;">Do not have an account?</a>
+            </li>
+            <li class="ml-2">
+                <a class="navbar-text selects" [routerLink]="['/auth/signup']">signup</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="isLoggedIn">
+            <li class="ml-2">
+                <a class="navbar-text selects" [routerLink]="['/auth']" (click)="logout()">Logout</a>
             </li>
         </ul>
     </div>

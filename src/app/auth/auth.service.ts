@@ -1,27 +1,38 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 import { CookieService } from "ngx-cookie-service";
-import { Observable, Subscription } from "rxjs";
 @Injectable({ providedIn: "root" })
 export class AuthService {
 
     authCom: BehaviorSubject<any>;
-
+    isSigningUp = true;
+    isLoggedIn = false;
     constructor(private cookies: CookieService) {
         let cookie;
-
         if (cookies.check("user")) {
-            cookie = cookies.get("user");
+            cookie = JSON.parse(cookies.get("user"));
         }
         this.authCom = new BehaviorSubject<any>(cookie ? cookie : null);
     }
 
-    login() {
-        this.authCom.next("");
+    navStatus = new Subject<boolean>();
+
+    setStatus(status) {
+        this.navStatus.next(status);
+    }
+
+    getStatus() {
+        return this.navStatus.asObservable();
+    }
+
+    login(data: any, remember: boolean) {
+        if (remember) this.cookies.set("user", JSON.stringify(data));
+        this.authCom.next(data);
     }
 
     logout() {
-        this.authCom.next("");
+        if (this.cookies.check("user")) this.cookies.delete("user");
+        this.authCom.next(null);
     }
 
     check() { return this.authCom.asObservable(); }

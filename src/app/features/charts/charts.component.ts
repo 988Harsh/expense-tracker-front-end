@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as Highcharts from "highcharts";
+import ChartsOptions from 'src/app/helpers/chartOptions';
 
 @Component({
   selector: 'app-charts',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private options: ChartsOptions) {
+    this.options.getOptions().subscribe(data => {
+      Highcharts.chart('container', data);
+    })
+  }
 
   ngOnInit(): void {
+    this.options.Options();
   }
 
 }

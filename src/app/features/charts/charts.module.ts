@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from "ngx-pagination";
 import { ChartsComponent } from "./charts.component";
+import { } from "../../helpers/chartOptions";
 
 const routes: Routes = [
     {

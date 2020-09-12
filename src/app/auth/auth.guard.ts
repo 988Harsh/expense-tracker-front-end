@@ -11,12 +11,10 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot): boolean | Promise<boolean> | Observable<boolean> | UrlTree {
 
 
-        return this.authCom.check().pipe(map((data: any) => {
-            return data !== null;
-        }, tap(result => {
-            if (result === false)
-                return this.router.navigate(['/auth']);
-        })));
+        return this.authCom.check().pipe(map(data => {
+            if (data !== null) return true;
+            else this.router.navigate(['/auth']);
+        }));
 
     }
 }

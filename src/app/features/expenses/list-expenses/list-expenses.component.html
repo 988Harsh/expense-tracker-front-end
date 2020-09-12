@@ -1,1 +1,30 @@
-<p>list-expenses works!</p>
+<div class="container ">
+    <a (click)="onAdd()" class="btn btn-primary my-2">Add Expense!</a>
+    <table *ngIf="alert===false" class="table table-bordered table-sm table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+                <th scope="col">Amount(Rs.)</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let expense of expenses | paginate:config">
+                <td>{{expense.type}}</td>
+                <td>{{expense.description}}</td>
+                <td>{{expense.amount}}</td>
+                <td>
+                    <button class="btn btn-primary mr-2" (click)="onEdit(expense.id)">Edit!</button>
+                    <button class="btn btn-danger" (click)="onDelete(expense.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls *ngIf="alert===false" id="tasksPagination" (pageChange)="pageChange($event)"
+        class="my-pagination">
+    </pagination-controls>
+    <div *ngIf="alert===true" class="alert alert-danger">
+        <h3>Page accessed is Out of Bound!</h3>
+    </div>
+</div>

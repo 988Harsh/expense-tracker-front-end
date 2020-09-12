@@ -1,1 +1,22 @@
-<p>add-or-edit-expense works!</p>
+<div class="d-flex justify-content-center align-items-center ">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="w-50">
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input [(ngModel)]="expense.description" name="description" type="text" required class="form-control"
+                id="description" aria-describedby="emailHelp" placeholder="Enter description">
+        </div>
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input [(ngModel)]="expense.amount" name="amount" type="text" required class="form-control" id="description"
+                aria-describedby="emailHelp" placeholder="Enter description">
+        </div>
+        <div class="form-group">
+            <label for="inputState">Category</label>
+            <select [(ngModel)]="categories.type" [value]="expense.type" name="category" id="inputState"
+                class="form-control">
+                <option *ngFor="let category of categories" [value]="category.type">{{category.type}}</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">{{!isEditing?'Add User':'Save!'}}</button>
+    </form>
+</div>
